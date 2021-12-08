@@ -111,9 +111,7 @@ return [
             'driver' => 'oracle',
             'host' => '128.196.27.219',
             'port' => '1521',
-            'database' => 'MIS00', // SID IN UPPER CASE
-            'username' => 'mis531group13',
-            'password' => 'N,T1givTQ',
+           
             'charset' => '',
             'prefix' => '',
             ),
