@@ -58,7 +58,12 @@
                     <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
                         <span>Built in: {{$listing->yearbuilt}}</span>
                     </div>
-                    <p>{{$listing->description}}</p> <button class="btn btn-danger">{{ ($listing->type == "rent" ? "Rent" : "Buy") }}</button>
+                    <p>{{$listing->description}}</p>
+                    @if($listing->type == "rent")
+                        <a href=" {{ route('rent', ['listid' => $listing->listid, 'propid' => $listing->propid, 'price' => $listing->price] ) }}"><button class="btn btn-danger">Rent</button></a>
+                    @else
+                        <a href=" {{ route('buy', ['listid' => $listing->listid, 'propid' => $listing->propid, 'price' => $listing->price] ) }}"><button class="btn btn-danger">Buy</button></a>
+                    @endif
                 </div>
             </div>
             </div>

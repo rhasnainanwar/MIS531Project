@@ -18,6 +18,21 @@ class HomeController extends Controller
         // $this->middleware('auth');
     }
 
+
+    public function payments()
+    {
+        $mapping = [
+            'P' => 'Paypal',
+            'D' => 'Debit/Credit Card',
+            'C' => 'Cash',
+            'W' => 'Wire',
+        ];
+
+        $payments = DB::table('payments')->get();
+        return view('payments', ['payments' => $payments, 'mapping' => $mapping]);
+    }
+
+
     /**
      * Show the application dashboard.
      *
@@ -32,7 +47,6 @@ class HomeController extends Controller
             'T' => 'Townhouse',
         ];
 
-        
         $all_listings = DB::table('listings_sales_rentals_view');
 
         if($request->get('saletype') != ''){
@@ -50,15 +64,15 @@ class HomeController extends Controller
             $all_listings = $all_listings->where('zipcode', $zipcode);
         }
 
-        // if($request->get('minprice') != ''){
-        //     $minprice = $request->get('minprice');
-        //     $all_listings = $all_listings->where('price', '>=', $minprice);
-        // }
+        if($request->get('minprice') != ''){
+            $minprice = $request->get('minprice');
+            $all_listings = $all_listings->where('price', '>=', $minprice);
+        }
 
-        // if($request->get('maxprice') != ''){
-        //     $maxprice = $request->get('maxprice');
-        //     $all_listings = $all_listings->where('price', '<=', $maxprice);
-        // }
+        if($request->get('maxprice') != ''){
+            $maxprice = $request->get('maxprice');
+            $all_listings = $all_listings->where('price', '<=', $maxprice);
+        }
 
         $all_listings = $all_listings->get();
             
