@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illumunate\Support\Collection;
 use DB;
-// use Request;
 
 class HomeController extends Controller
 {
@@ -28,8 +28,17 @@ class HomeController extends Controller
             'W' => 'Wire',
         ];
 
-        $payments = DB::table('payments')->get();
-        return view('payments', ['payments' => $payments, 'mapping' => $mapping]);
+        $payments = DB::table('user_payments_view')->get();
+
+        $paid = collect($payments)->filter(function ($payment) {
+            return $payment->payer == session('user')->userid;
+        });
+
+        $received = collect($payments)->filter(function ($payment) {
+            return $payment->receiver == session('user')->userid;
+        });
+
+        return view('payments', ['paid' => $paid, 'received' => $received, 'mapping' => $mapping]);
     }
 
 

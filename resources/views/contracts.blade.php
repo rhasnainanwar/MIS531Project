@@ -6,7 +6,7 @@
 </div>
 <div class="container">
     <h2>Sales Contracts</h2>
-    @if($sale_contracts)
+    @if($sale_contracts || count($sale_contracts) > 0)
         <div class="row justify-content-center">
             <div class="col-md-8">
             <table class="table">

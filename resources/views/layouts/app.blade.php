@@ -93,5 +93,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/search.js') }}" defer></script>
+    </script>
 </body>
 </html>

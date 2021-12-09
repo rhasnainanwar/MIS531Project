@@ -52,6 +52,8 @@ class PropertyController extends Controller
             ['contractid' => $contractid, 'agentid' => $agentid, 'ownerid' => $ownerid, 'buyerid' => session('user')->userid]
         );
 
+        DB::table('listings')->where('listid', $request->listid)->update(['expdate' => date('Y-M-d')]);
+
         return redirect('/contracts');
     }
 
@@ -73,6 +75,8 @@ class PropertyController extends Controller
         DB::table('rental_contracts')->insert(
             ['contractid' => $contractid, 'agentid' => $agentid, 'urmanagerid' => $ownerid, 'lesseeid' => session('user')->userid]
         );
+
+        
 
         return redirect('/contracts');
     }
