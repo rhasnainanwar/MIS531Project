@@ -33,6 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(session('user'))
                         <li class="nav-item">
                         <a class="nav-link" href="#">Messages</a>
                         </li>
@@ -51,6 +52,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('payments') }}">Payments</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

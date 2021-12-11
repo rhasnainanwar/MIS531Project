@@ -21,6 +21,10 @@ class HomeController extends Controller
 
     public function payments()
     {
+        if(session('user') == null){
+            return redirect('/login');
+        }
+        
         $mapping = [
             'P' => 'Paypal',
             'D' => 'Debit/Credit Card',
